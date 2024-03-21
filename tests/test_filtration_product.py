@@ -18,3 +18,4 @@ def test_buy_product_1():
 
     time.sleep(5)
     print('Finish test')
+

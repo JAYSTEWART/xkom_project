@@ -1,4 +1,7 @@
 import datetime
+import random
+import re
+import time
 
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -7,7 +10,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class Base():
-    url = 'https://allegro.pl/'
 
     def __init__(self, driver):
         self.driver = driver
@@ -28,9 +30,24 @@ class Base():
         action = ActionChains(self.driver)
         action.click_and_hold(locators).move_by_offset(x, y).release().perform()
 
+    def add_random_item_to_cart(self):
+        available_items_element = WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="listing-naglowek"]/div[1]')))
+
+        available_items_text = available_items_element.text
+        available_items_count = int(''.join(re.findall(r'\d+', available_items_text)))
+        print(available_items_count)
+        if available_items_count == 0:
+            raise Exception("No items available to add to cart")
+
+        random_item_index = str(random.randint(1, available_items_count))
+        print(random_item_index)
+        loc = (By.XPATH, f'//*[@id="listing-container"]/div[{random_item_index}]/div/div[2]/div[2]/div[1]/a/h3/span')
+        return loc
+
     # Переход на url
-    def url_trans(self):
-        self.driver.get(self.url)
+    def url_trans(self, url):
+        self.driver.get(url)
 
     # Функция возврата URL
     def get_current_url(self):

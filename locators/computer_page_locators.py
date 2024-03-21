@@ -37,3 +37,5 @@ class ComputerPageLocators:
     windows_10 = (By.XPATH, '//*[@id="listing-filters"]/div[2]/div/section[9]/div[3]')
     macOS = (By.XPATH, '//*[@id="listing-filters"]/div[2]/div/section[9]/div[4]')
     chromeOS = (By.XPATH, '//*[@id="listing-filters"]/div[2]/div/section[9]/div[5]')
+
+    first_item = (By.XPATH, '//*[@id="listing-container"]/div[1]/div/div[2]/div[2]/div[1]/a/h3/span')
