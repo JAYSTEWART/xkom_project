@@ -31,3 +31,4 @@ class Card_page(Base):
         self.element_to_be_clickable(self.locators.city).send_keys(city)
         self.element_to_be_clickable(self.locators.phone_number).send_keys(phone_number)
         self.element_to_be_clickable(self.locators.email).send_keys(email)
+        print('Input data')
