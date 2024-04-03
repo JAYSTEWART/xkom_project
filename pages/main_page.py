@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,10 +18,11 @@ class Main_page(Base):
     locators2 = ComputerPageLocators
 
     # Methods
+    with allure.step('Get computer'):
 
-    def get_computer(self):
-        self.driver.get(self.url)
-        self.get_current_url()
-        self.element_to_be_clickable(self.locators.agreement).click()
-        self.element_to_be_clickable(self.locators.computer).click()
-        self.element_to_be_clickable(self.locators2.computer_notebook).click()
+        def get_computer(self):
+            self.driver.get(self.url)
+            self.get_current_url()
+            self.element_to_be_clickable(self.locators.agreement).click()
+            self.element_to_be_clickable(self.locators.computer).click()
+            self.element_to_be_clickable(self.locators2.computer_notebook).click()
